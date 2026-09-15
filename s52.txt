@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Marathon — An Informational Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;1,9..144,450&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B1912;
+    --paper:#EDE7D8;
+    --paper-2:#E4DCC7;
+    --clay:#B23A2A;
+    --gold:#B4842A;
+    --slate:#4B5158;
+    --line:#CBBFA2;
+    --white:#FBF9F3;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Archivo', sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:450;
+    margin:0;
+    line-height:1.05;
+    letter-spacing:-0.01em;
+  }
+  p{margin:0 0 1.1em 0;}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+  .measure{max-width:620px;}
+
+  /* ---------- Mile marker motif ---------- */
+  .mile{
+    display:inline-flex;
+    align-items:baseline;
+    gap:8px;
+    font-family:'Archivo', sans-serif;
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:0.04em;
+    color:var(--clay);
+    border:1px solid var(--clay);
+    border-radius:100px;
+    padding:5px 14px 5px 10px;
+    margin-bottom:22px;
+  }
+  .mile b{font-size:15px;}
+  .mile span{color:var(--slate);font-weight:500;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    min-height:92vh;
+    display:flex;
+    align-items:flex-end;
+    background:#100f0b;
+  }
+  .hero img{
+    position:absolute;inset:0;
+    width:100%;height:100%;
+    object-fit:cover;
+    object-position:center 30%;
+    opacity:0.62;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(16,15,11,0.15) 0%, rgba(16,15,11,0.35) 55%, rgba(16,15,11,0.92) 100%);
+  }
+  .hero-inner{
+    position:relative;
+    width:100%;
+    padding:0 32px 56px;
+    max-width:1120px;
+    margin:0 auto;
+    color:var(--white);
+  }
+  .hero-eyebrow{
+    font-size:13px;
+    letter-spacing:0.08em;
+    color:#D9CBAE;
+    font-weight:600;
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(48px, 8vw, 108px);
+    color:var(--white);
+    max-width:900px;
+  }
+  .hero-sub{
+    margin-top:22px;
+    max-width:520px;
+    font-size:18px;
+    color:#E7DFCC;
+  }
+  .stat-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:40px;
+    margin-top:48px;
+    padding-top:28px;
+    border-top:1px solid rgba(255,255,255,0.22);
+  }
+  .stat b{
+    display:block;
+    font-family:'Fraunces', serif;
+    font-size:34px;
+    font-weight:450;
+    color:var(--white);
+  }
+  .stat span{
+    display:block;
+    font-size:13px;
+    color:#C9BC9F;
+    margin-top:4px;
+  }
+
+  /* ---------- Generic section ---------- */
+  section{padding:96px 0;position:relative;}
+  section.tight{padding:72px 0;}
+  .grid-2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:64px;
+    align-items:center;
+  }
+  .grid-2.rev .col-img{order:2;}
+  .col-text h2{font-size:clamp(30px,3.6vw,44px);margin-bottom:22px;}
+  figure{margin:0;}
+  figcaption{
+    font-size:13px;
+    color:var(--slate);
+    margin-top:10px;
+    font-style:italic;
+  }
+  .rounded-photo{border-radius:2px;overflow:hidden;}
+  .rounded-photo img{width:100%;height:100%;object-fit:cover;}
+
+  hr.rule{border:none;border-top:1px solid var(--line);margin:0;}
+
+  /* ---------- Intro / lede ---------- */
+  .lede{padding:88px 0 40px;}
+  .lede p.big{
+    font-family:'Fraunces', serif;
+    font-size:clamp(22px,2.6vw,30px);
+    font-weight:450;
+    line-height:1.4;
+    max-width:800px;
+  }
+  .lede .measure{color:var(--slate);font-size:16px;}
+
+  /* ---------- The Wall (inverted) ---------- */
+  .wall{
+    background:var(--ink);
+    color:var(--paper);
+    padding:110px 0;
+  }
+  .wall .mile{border-color:#D98A63;color:#E9A783;}
+  .wall .mile span{color:#B7AF9A;}
+  .wall h2{color:var(--white);font-size:clamp(32px,4vw,50px);max-width:720px;}
+  .wall .measure{color:#CFC7B3;}
+  .wall-grid{
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    gap:56px;
+    margin-top:36px;
+  }
+  .wall-fact{
+    border-top:1px solid rgba(255,255,255,0.2);
+    padding-top:16px;
+    margin-top:16px;
+  }
+  .wall-fact:first-child{margin-top:0;}
+  .wall-fact b{
+    display:block;
+    font-family:'Fraunces', serif;
+    font-size:20px;
+    font-weight:450;
+    color:var(--white);
+    margin-bottom:6px;
+  }
+  .wall-fact p{color:#C9C1AC;font-size:15px;margin:0;}
+
+  /* ---------- Majors ---------- */
+  .majors-banner{
+    border-radius:2px;
+    overflow:hidden;
+    margin-bottom:56px;
+    max-height:380px;
+  }
+  .majors-banner img{width:100%;height:380px;object-fit:cover;}
+  .card-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .maj-card{
+    background:var(--paper);
+    padding:28px 26px;
+  }
+  .maj-card .yr{
+    font-size:13px;
+    color:var(--clay);
+    font-weight:700;
+    letter-spacing:0.03em;
+  }
+  .maj-card h3{
+    font-size:22px;
+    margin:8px 0 10px;
+  }
+  .maj-card p{font-size:14.5px;color:var(--slate);margin:0;}
+
+  /* ---------- Records timeline ---------- */
+  .timeline{
+    position:relative;
+    margin-top:48px;
+    padding-left:28px;
+    border-left:2px dashed var(--line);
+  }
+  .t-row{
+    position:relative;
+    padding:0 0 34px 26px;
+  }
+  .t-row::before{
+    content:"";
+    position:absolute;
+    left:-35px;
+    top:4px;
+    width:11px;height:11px;
+    border-radius:50%;
+    background:var(--paper);
+    border:2px solid var(--slate);
+  }
+  .t-row.final::before{
+    background:var(--clay);
+    border-color:var(--clay);
+    width:14px;height:14px;
+    left:-36.5px;top:2px;
+  }
+  .t-time{
+    font-family:'Fraunces', serif;
+    font-size:26px;
+    font-weight:600;
+  }
+  .t-row.final .t-time{color:var(--clay);}
+  .t-meta{font-size:14px;color:var(--slate);margin-top:2px;}
+
+  /* ---------- Finish ---------- */
+  .finish-media{
+    border-radius:2px;
+    overflow:hidden;
+    margin-top:44px;
+  }
+  .finish-media img{width:100%;max-height:460px;object-fit:cover;}
+
+  footer{
+    padding:48px 0 64px;
+    border-top:1px solid var(--line);
+  }
+  footer .wrap{
+    display:flex;
+    justify-content:space-between;
+    gap:24px;
+    flex-wrap:wrap;
+    font-size:13px;
+    color:var(--slate);
+  }
+
+  @media (max-width:820px){
+    .grid-2, .wall-grid{grid-template-columns:1fr;gap:32px;}
+    .grid-2.rev .col-img{order:0;}
+    .card-grid{grid-template-columns:1fr 1fr;}
+    .stat-row{gap:28px;}
+    section{padding:64px 0;}
+  }
+  @media (max-width:560px){
+    .card-grid{grid-template-columns:1fr;}
+    .wrap{padding:0 22px;}
+    .hero-inner{padding:0 22px 40px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <img src="https://images.pexels.com/photos/3075367/pexels-photo-3075367.jpeg?auto=compress&w=1600&h=1400&dpr=1" alt="A runner crossing a marathon finish line in an urban race, arms raised">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">An informational guide</div>
+    <h1>The Marathon</h1>
+    <p class="hero-sub">Twenty-six miles and 385 yards. A distance fixed by accident, chased by legend, and now run by more people than at any point in its history.</p>
+    <div class="stat-row">
+      <div class="stat"><b>26.2 mi</b><span>Official distance since 1921</span></div>
+      <div class="stat"><b>490 BCE</b><span>The battle behind the legend</span></div>
+      <div class="stat"><b>1:59:30</b><span>Current men's world record</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- LEDE / MILE 0 -->
+<section class="lede">
+  <div class="wrap">
+    <div class="mile"><b>MILE 0</b><span>START</span></div>
+    <p class="big">A marathon is, on paper, a simple thing: a single race over a fixed distance. In practice, it sits at the crossing point of ancient myth, Olympic history, exercise physiology, and one of the largest participation movements in sport.</p>
+    <p class="measure">This page walks through that whole story — where the distance came from, what actually happens inside the body over 26.2 miles, how the world's biggest races came to be, and how fast a human being has ever managed to run it. Nothing here is for sale; it's simply an account of the race.</p>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- HISTORY / MILE 2 -->
+<section>
+  <div class="wrap grid-2">
+    <div class="col-text">
+      <div class="mile"><b>MILE 2</b><span>THE LEGEND</span></div>
+      <h2>An uneven distance, fixed by a stadium</h2>
+      <p>The marathon's name comes from the Greek town of Marathon, roughly 25 miles from Athens. According to legend recorded centuries after the fact, a runner named Pheidippides carried news of a Greek victory over Persia there in 490 BCE, delivered his message, and collapsed. Historians generally treat the story as embellishment layered onto an earlier, less dramatic account by Herodotus — but the image stuck.</p>
+      <p>When the first modern Olympics were held in Athens in 1896, organizers created a race retracing that route, roughly 40 kilometres, as a tribute to Greek history. A Greek runner, Spyridon Louis, won it in front of a home crowd, and the event became an instant centerpiece of the Games.</p>
+      <p>The odd 26.2-mile figure came later, almost by accident. At the 1908 London Olympics, the course was stretched so the race could start at Windsor Castle and finish in front of the royal viewing box at White City Stadium — a distance of 26 miles and 385 yards. That specific length wasn't made standard until 1921, when it was adopted as the official distance going forward.</p>
+    </div>
+    <div class="col-img">
+      <figure class="rounded-photo">
+        <img src="https://solarspell-dls.sfis.asu.edu/mea/wikipedia/images/3020/302025.jpg" alt="Spyridon Louis entering the stadium at the end of the marathon, 1896 Athens Olympics">
+      </figure>
+      <figcaption>Spyridon Louis enters the Panathenaic Stadium to win the first Olympic marathon, Athens, 1896. Public domain.</figcaption>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- PHYSIOLOGY / MILE 8 -->
+<section>
+  <div class="wrap grid-2 rev">
+    <div class="col-text">
+      <div class="mile"><b>MILE 8</b><span>THE MACHINE</span></div>
+      <h2>What the body is actually doing</h2>
+      <p>For the first hour or so, a trained runner's muscles draw energy mostly from glycogen — sugar stored in the muscles and liver — supplemented by fat. The pace a runner can sustain for a full marathon sits close to their lactate threshold: the point where the body can still clear lactate roughly as fast as it produces it, before fatigue accelerates.</p>
+      <p>Two numbers dominate the science of distance running. VO2 max measures how much oxygen the body can use during hard effort — it sets a ceiling on potential. Running economy measures how efficiently a runner converts oxygen into forward motion at a given pace — it's a large part of why two runners with similar VO2 max can finish minutes apart. Elite marathoners tend to combine a high ceiling with exceptional economy, built over years of training.</p>
+      <p>Cardiovascular adaptation matters just as much: a trained distance runner's heart pumps more blood per beat, and their muscles grow denser with the capillaries and mitochondria that turn oxygen into usable energy.</p>
+    </div>
+    <div class="col-img">
+      <figure class="rounded-photo">
+        <img src="https://images.pexels.com/photos/17979527/pexels-photo-17979527/free-photo-of-man-running-in-race-run.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=1000" alt="A runner wearing a race bib mid-stride on a race course">
+      </figure>
+      <figcaption>Sustained pace over 26.2 miles is set by lactate threshold, not top speed.</figcaption>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- TRAINING / MILE 13.1 -->
+<section>
+  <div class="wrap grid-2">
+    <div class="col-text">
+      <div class="mile"><b>MILE 13.1</b><span>HALFWAY</span></div>
+      <h2>Getting to the start line ready</h2>
+      <p>Most marathon training plans run 12 to 20 weeks and build around one central rule: gradually increasing total distance while keeping most runs at an easy, conversational pace. Roughly 80% of a trained runner's weekly mileage is often run well below race pace — hard efforts are deliberately rationed, because the body adapts during recovery, not during the workout itself.</p>
+      <p>A weekly long run — building toward 18 to 22 miles for many recreational runners — teaches the body to spare glycogen and burn fat more efficiently at speed. In the final two to three weeks before race day, runners "taper": mileage drops sharply while intensity stays, letting the legs fully recover without losing sharpness.</p>
+      <p>Fueling strategy has become part of training itself. Many competitive runners now practice taking in 60–90 grams of carbohydrate per hour during long runs, training the gut to absorb fuel at a rate that would have caused stomach distress a generation ago.</p>
+    </div>
+    <div class="col-img">
+      <figure class="rounded-photo">
+        <img src="https://images.pexels.com/photos/17979421/pexels-photo-17979421/free-photo-of-man-running-on-a-path.jpeg?w=1000&h=1000&dpr=1" alt="A runner on a long training route through the countryside">
+      </figure>
+      <figcaption>The long run — not speedwork — is the centerpiece of most marathon plans.</figcaption>
+    </div>
+  </div>
+</section>
+
+<!-- THE WALL / MILE 20 -->
+<section class="wall">
+  <div class="wrap">
+    <div class="mile"><b>MILE 20</b><span>THE WALL</span></div>
+    <h2>Where the race actually begins</h2>
+    <p class="measure" style="margin-top:18px;">Runners have talked about "hitting the wall" for as long as the modern marathon has existed — a sudden, severe drop in pace that tends to arrive around mile 18 to 20. It isn't in the runner's head, though the mind is where it's fought.</p>
+    <div class="wall-grid">
+      <div>
+        <div class="wall-fact">
+          <b>Glycogen depletion</b>
+          <p>The body stores roughly 90–120 minutes of glycogen at marathon effort. Once stores run low, the body shifts harder toward fat for fuel — a much slower process — and pace falls even if effort stays the same.</p>
+        </div>
+        <div class="wall-fact">
+          <b>Muscle-level fatigue</b>
+          <p>Beyond fuel, the repeated pounding of 20-plus miles causes microscopic muscle damage, altering stride mechanics and making each subsequent mile measurably harder on the joints and connective tissue.</p>
+        </div>
+      </div>
+      <div>
+        <div class="wall-fact">
+          <b>Carbohydrate loading</b>
+          <p>The days-before practice of eating more carbohydrates while tapering training raises glycogen stores, pushing the point of depletion later into the race — sometimes past the finish line entirely.</p>
+        </div>
+        <div class="wall-fact">
+          <b>Pacing discipline</b>
+          <p>The single most reliable defense is even pacing. Runners who go out even slightly too fast in the first half are disproportionately likely to fade hard in the last six miles.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAJORS / MILE 24 -->
+<section>
+  <div class="wrap">
+    <div class="mile"><b>MILE 24</b><span>THE MAJORS</span></div>
+    <h2 style="font-size:clamp(30px,3.6vw,44px);margin-bottom:36px;max-width:700px;">Six races, one circuit</h2>
+    <div class="majors-banner">
+      <img src="https://images.pexels.com/photos/3096550/pexels-photo-3096550.jpeg?cs=tinysrgb&dpr=1&w=1400" alt="A marathon runner celebrating as they cross a city-street finish line">
+    </div>
+    <div class="card-grid">
+      <div class="maj-card">
+        <div class="yr">Since 1897</div>
+        <h3>Boston</h3>
+        <p>The oldest annual marathon in the world, run every Patriots' Day. It's also the only major that still requires most entrants to hit a qualifying time.</p>
+      </div>
+      <div class="maj-card">
+        <div class="yr">Since 1970</div>
+        <h3>New York City</h3>
+        <p>Began with 127 runners looping Central Park; now one of the largest marathons on Earth, routed through all five boroughs.</p>
+      </div>
+      <div class="maj-card">
+        <div class="yr">Since 1974</div>
+        <h3>Chicago</h3>
+        <p>Famous for its flat, fast course through the Loop — the site of several men's world records, including Kelvin Kiptum's in 2023.</p>
+      </div>
+      <div class="maj-card">
+        <div class="yr">Since 1981</div>
+        <h3>London</h3>
+        <p>Known for elite fields and enormous charity fundraising — a large share of finishers run it to raise money for a cause.</p>
+      </div>
+      <div class="maj-card">
+        <div class="yr">Since 1974</div>
+        <h3>Berlin</h3>
+        <p>The record-breaker's course: its long straightaways and flat profile have hosted more men's world records than any other major.</p>
+      </div>
+      <div class="maj-card">
+        <div class="yr">Since 2007</div>
+        <h3>Tokyo</h3>
+        <p>The youngest of the six and the last to join the World Marathon Majors series, in 2013, completing the current circuit.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- RECORDS / MILE 26 -->
+<section>
+  <div class="wrap">
+    <div class="mile"><b>MILE 26</b><span>THE RECORD</span></div>
+    <h2 style="font-size:clamp(30px,3.6vw,44px);max-width:680px;">A hundred years of getting faster</h2>
+    <p class="measure" style="margin-top:18px;color:var(--slate);">The men's marathon world record has fallen by nearly an hour since it was first recognized. The pace of improvement has only sped up in the last two decades.</p>
+    <div class="timeline">
+      <div class="t-row">
+        <div class="t-time">2:55:18</div>
+        <div class="t-meta">Johnny Hayes, USA — London, 1908</div>
+      </div>
+      <div class="t-row">
+        <div class="t-time">2:04:55</div>
+        <div class="t-meta">Paul Tergat, Kenya — Berlin, 2003</div>
+      </div>
+      <div class="t-row">
+        <div class="t-time">2:03:59</div>
+        <div class="t-meta">Haile Gebrselassie, Ethiopia — Berlin, 2008</div>
+      </div>
+      <div class="t-row">
+        <div class="t-time">2:02:57</div>
+        <div class="t-meta">Dennis Kimetto, Kenya — Berlin, 2014</div>
+      </div>
+      <div class="t-row">
+        <div class="t-time">2:01:39</div>
+        <div class="t-meta">Eliud Kipchoge, Kenya — Berlin, 2018</div>
+      </div>
+      <div class="t-row">
+        <div class="t-time">2:01:09</div>
+        <div class="t-meta">Eliud Kipchoge, Kenya — Berlin, 2022</div>
+      </div>
+      <div class="t-row">
+        <div class="t-time">2:00:35</div>
+        <div class="t-meta">Kelvin Kiptum, Kenya — Chicago, 2023</div>
+      </div>
+      <div class="t-row final">
+        <div class="t-time">1:59:30</div>
+        <div class="t-meta">Sabastian Sawe, Kenya — London, 2026 — first official sub-two-hour marathon</div>
+      </div>
+    </div>
+    <p class="measure" style="margin-top:8px;font-size:14.5px;color:var(--slate);">On the women's side, the current world record stands at 2:09:56, run by Ruth Chepngetich in Chicago.</p>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- FINISH / MILE 26.2 -->
+<section>
+  <div class="wrap">
+    <div class="mile"><b>MILE 26.2</b><span>FINISH</span></div>
+    <div class="grid-2">
+      <div class="col-text">
+        <h2>A race mostly run by amateurs</h2>
+        <p>For every elite athlete chasing a world record, there are tens of thousands of people running for entirely different reasons. The modern marathon boom — driven heavily by major-city races — has turned the distance into one of the most common items on a bucket list, with charity fundraising now a core part of races like London and New York.</p>
+        <p>Finish times for the field as a whole have gradually slowed even as elite times have dropped, a reflection of just how many first-time and mid-pack runners now take part. The gap between the fastest human ever to run 26.2 miles and an average finisher has never been wider — and the race has never been more popular.</p>
+      </div>
+      <div class="col-img">
+        <figure class="finish-media">
+          <img src="https://images.pexels.com/photos/2719567/pexels-photo-2719567.jpeg?cs=tinysrgb&dpr=1&w=1200" alt="A runner celebrating with arms raised after crossing a marathon finish line">
+        </figure>
+        <figcaption>Millions of finish lines are crossed each year, most of them nowhere near a world record.</figcaption>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>An informational overview of marathon history, physiology, and racing. No products, events, or services are being promoted on this page.</div>
+    <div>Sources: World Athletics, Olympics.com, race organizers, sports reference archives.</div>
+  </div>
+</footer>
+
+</body>
+</html>
